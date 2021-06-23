@@ -5,36 +5,39 @@ import Color from '../../constants/color';
 
 const Icon = props => {
     return (
-        <View style={styles.iconUnderText} >
+        <View style={styles.iconContainer} >
             <View style={styles.icon} >
                 <Text style={styles.iconTextInside} >{props.textOnIcon}</Text>
             </View>
             <View>
-                <Text>{props.fullname}</Text>
+                <Text style={styles.iconTextUnder} >{props.fullname}</Text>
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    iconUnderText: {
-        backgroundColor: 'red'
-    },
     iconContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        backgroundColor: "#465bb3"
+        alignItems:'center',
+        marginTop:20,
+        marginRight:17
     },
     icon: {
-        width: 80,
-        height: 80,
-        backgroundColor: Color.primary,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 40
+        width: 60,
+        height: 60,
+        backgroundColor: Color.accent,
+        borderRadius: 30
     },
     iconTextInside: {
-        fontSize: 40
+        fontSize: 25,
+        textAlign:'center',
+        marginTop:10,
+        color:Color.primary
+    },
+    iconTextUnder:{
+        marginTop:10,
+        fontSize:20,
+        color:Color.accent
     }
 })
 

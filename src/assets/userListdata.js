@@ -3,24 +3,34 @@ import user from '../models/userlist';
 const USERS = [
     new user (
         'u1',
-        'Rashmi Shree S',
+        'Rashm..',
         'RS'
     ),
     new user (
         'u2',
-        'Nandita BG',
+        'Nandi..',
         'NB'
     ),
     new user (
         'u3',
-        'Adam Shoaib',
+        'Adam..',
         'AS'
     ),
     new user (
         'u4',
-        'Divya Pb',
+        'Divya..',
         'DP'
-    )
+    ),
+    new user (
+        'u5',
+        'Sunil..',
+        'ST'
+    ),
+    new user (
+        'u6',
+        'Divya..',
+        'DS'
+    ),
 ]
 
 export default USERS;
