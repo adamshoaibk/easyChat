@@ -7,24 +7,12 @@ import {
 } from 'react-native';
 
 import Color from '../../constants/color';
+import { getShortName } from '../../utils/helper';
 
 const Icon = props => {
     const [shortText, setShortText] = useState('')
     useEffect(() => {
-        let fullName = props.fullname;
-        console.log(fullName);
-        let shortText = '';
-        if (fullName) {
-            fullName = fullName.split(' ');
-            if (fullName.length === 1) {
-                shortText = fullName[0].charAt(0).toUpperCase();
-            } else if (fullName.length > 1) {
-                shortText = fullName[0].charAt(0).toUpperCase() + fullName[1].charAt(0).toUpperCase();
-            }
-            setShortText(shortText);
-        } else {
-            setShortText('X')
-        }
+        setShortText(getShortName(props.fullname))
     }, [])
 
     return (

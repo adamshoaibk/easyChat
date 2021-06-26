@@ -3,16 +3,14 @@ import {
     View, 
     TextInput, 
     Button,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity
 } from 'react-native';
-
-import Color from '../../constants/color';
-
 const Input = () => {
     return(
         <View style={styles.inputcontainer} >
             <TextInput 
-                placeholder="enter your message"
+                placeholder="type your message here"
                 style={styles.input}
             />
             <View style={styles.button} >
@@ -43,7 +41,6 @@ const styles = StyleSheet.create({
         paddingHorizontal:40
     },
     button:{
-        paddingHorizontal:25,
         paddingVertical:10
     }
 })

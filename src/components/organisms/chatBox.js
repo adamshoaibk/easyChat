@@ -9,7 +9,7 @@ import Color from '../../constants/color';
 
 const ChatBox = props => {
     const messages = useSelector(state=> state.message.availableMessages);
-    const currentChatNameChatBox= props.currentPerson;
+    console.log("inside chatbox", props.currentPerson)
     return( 
         <View style={styles.ChatBoxContainer} >
             <FlatList 
@@ -18,7 +18,7 @@ const ChatBox = props => {
                 keyExtractor={item=> item.msgId}
                 renderItem={itemData=>(
                     <View>
-                        <RecievedMessages currentChatNameRecieved={currentChatNameChatBox} chatMsg={itemData.item.message} />
+                        <RecievedMessages currentChatNameRecieved={props.currentPerson} chatMsg={itemData.item.message} />
                         <SentMessages chatMsg={itemData.item.message} />
                     </View>
                 )}

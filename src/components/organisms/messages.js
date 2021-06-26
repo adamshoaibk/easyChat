@@ -3,20 +3,11 @@ import {
     View, 
     Text, 
     StyleSheet, 
-    TouchableOpacity,
-    ScrollView  
+    TouchableOpacity 
 } from 'react-native';
 
 import Color from '../../constants/color';
-
-const randomTime = () => {
-    const hrs = Math.round(Math.random()*12);
-    const mins = Math.round(Math.random()*60);
-    const hFormat = hrs < 10 ? '0' : '';
-    const mFormat = mins < 10 ? '0' : '';
-    const amPm = hrs < 12 ? 'AM' : 'PM';
-    return String(hFormat + hrs + ":"+ mFormat + mins + " " + amPm)
-}
+import { randomTime } from '../../utils/helper';
 
 const Messages = props => {
     return(

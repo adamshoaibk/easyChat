@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
     View, 
     Text,
@@ -6,40 +6,14 @@ import {
 } from 'react-native';
 
 import Color from '../../constants/color';
-import Icon from '../molecules/icon';
-
-const randomTime = () => {
-    const hrs = Math.round(Math.random()*12);
-    const mins = Math.round(Math.random()*60);
-    const hFormat = hrs < 10 ? '0' : '';
-    const mFormat = mins < 10 ? '0' : '';
-    const amPm = hrs < 12 ? 'AM' : 'PM';
-    return String(hFormat + hrs + ":"+ mFormat + mins + " " + amPm)
-}
+import { getShortName, randomTime } from '../../utils/helper';
 
 const RecievedMessages = props => {
-    const currentChatNameRecieved = props.final;
-    const [shortText, setShortText] = useState('')
-    useEffect(() => {
-        let fullName = props.currentChatNameRecieved;
-        let shortText = '';
-        if (fullName) {
-            fullName = fullName.split(' ');
-            if (fullName.length === 1) {
-                shortText = fullName[0].charAt(0).toUpperCase();
-            } else if (fullName.length > 1) {
-                shortText = fullName[0].charAt(0).toUpperCase() + fullName[1].charAt(0).toUpperCase();
-            }
-            setShortText(shortText);
-        } else {
-            setShortText('X')
-        }
-
-    }, [])
+    console.log("inside chat screen",props.currentChatNameRecieved)
     return(
         <View style={styles.recieverContainer} >
             <View style={styles.recieverIcon} >
-                <Text style={styles.recieverIconTextInside} >{shortText}</Text>
+                <Text style={styles.recieverIconTextInside} >{getShortName(props.currentChatNameRecieved)}</Text>
             </View>
             {/* <Icon style={styles.rI} /> */}
             <View style={styles.recieverSubContainer} >

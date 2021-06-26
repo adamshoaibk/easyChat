@@ -11,52 +11,54 @@ import SubHeading from '../components/atoms/SubHeading';
 import Icon from '../components/molecules/icon';
 import Messages from '../components/organisms/messages';
 import Color from '../constants/color';
+import { getShortName } from '../utils/helper';
 
 const Dashboard = props => {
     const users = useSelector(state => state.user.availableUsers);
-
-    return (
-        <SafeAreaView style={styles.safeAreaViewcontainer}>
-                <SubHeading title='Favourite Contacts' />
-                <View>
-                <FlatList
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    data={users}
-                    keyExtractor={item => item.userid}
-                    renderItem={itemData => (
-                        <Icon
-                            textOnIcon={itemData.item.usershortname}
-                            fullname={itemData.item.username}
-                        />
-                    )
-                    }
-                />
-                </View>
-                <View style={styles.msgScreen} >
+    return(
+            <SafeAreaView style={styles.safeAreaViewcontainer}>
+                    <SubHeading title='Favourite Contacts' />
+                    <View>
                     <FlatList
-                        showsVerticalScrollIndicator={false}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
                         data={users}
-                        keyExtractor={item=> item.userid}
-                        renderItem={itemData=>(
-                            <Messages 
-                                messageIconInsideName={itemData.item.usershortname}
-                                messageUsername={itemData.item.username}
-                                messageText={itemData.item.usermsg}
-                                goToChatScreen={()=>{
-                                    props.navigation.navigate({
-                                        routeName:'Chat',
-                                        params:{
-                                            personName:itemData.item.username
-                                        }
-                                    })
-                                }}
+                        keyExtractor={item => item.userid}
+                        renderItem={(itemData, index) => {
+                            console.log("hellooo",itemData.item)
+                            return(
+                                <Icon
+                                fullname={itemData.item.username}
                             />
-                        )}
+                            );
+                        }
+                        }
                     />
-                </View>
-        </SafeAreaView>
-    );
+                    </View>
+                    <View style={styles.msgScreen} >
+                        <FlatList
+                            showsVerticalScrollIndicator={false}
+                            data={users}
+                            keyExtractor={item=> item.userid}
+                            renderItem={itemData=>(
+                                <Messages 
+                                    messageIconInsideName={getShortName(itemData.item.username)}
+                                    messageUsername={itemData.item.username}
+                                    messageText={itemData.item.usermsg}
+                                    goToChatScreen={()=>{
+                                        props.navigation.navigate({
+                                            routeName:'Chat',
+                                            params:{
+                                                personName:itemData.item.username
+                                            }
+                                        })
+                                    }}
+                                />
+                            )}
+                        />
+                    </View>
+            </SafeAreaView>
+        );
 }
 Dashboard.navigationOptions = navbar => {
     return {
